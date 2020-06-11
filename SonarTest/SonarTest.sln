@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarTest", "SonarTest.csproj", "{98D05A09-D065-4CD3-A117-FD1C7A2BDC28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarTest2", "..\SonarTest2\SonarTest2.csproj", "{F58BCD9C-CAF1-4697-A957-A4E7E0770E14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{98D05A09-D065-4CD3-A117-FD1C7A2BDC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98D05A09-D065-4CD3-A117-FD1C7A2BDC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98D05A09-D065-4CD3-A117-FD1C7A2BDC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98D05A09-D065-4CD3-A117-FD1C7A2BDC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58BCD9C-CAF1-4697-A957-A4E7E0770E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58BCD9C-CAF1-4697-A957-A4E7E0770E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58BCD9C-CAF1-4697-A957-A4E7E0770E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58BCD9C-CAF1-4697-A957-A4E7E0770E14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
