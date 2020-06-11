@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SonarTest
 {
@@ -6,41 +7,103 @@ namespace SonarTest
     {
         static void Main(string[] args)
         {
-            SampleService service = null;
+            Test();
 
-            Console.WriteLine("Press the key");
-            var key = Console.ReadKey();
+            Console.ReadKey();
+        }
 
-            if (key.KeyChar == '1')
+        public static List<string>  Test()
+        {
+            List<string> warnings = new List<string>();
+
+            IRepository repository = null;
+            IFeatureConfiguration featureConfig = null;
+            if (ServiceLocator.IsLocationProviderSet)
                 try
                 {
-                    service = Activator.CreateInstance(typeof(SampleService)) as SampleService;
+                    repository = ServiceLocator.Current.GetInstance(typeof(IRepository)) as IRepository;
+                    featureConfig = ServiceLocator.Current.GetInstance(typeof(IFeatureConfiguration)) as IFeatureConfiguration;
                 }
-                catch
+                catch (ActivationException)
                 {
                     //do nothing
                 }
 
-            if (service?.IsFeatureAvailable(FeatureFlag.Feature1) ?? false)
+            try
             {
-                Console.WriteLine("I'm not dead");
+                if (featureConfig?.IsAvailable(FeaturesEnum.AddInflationRatesToPricingProfile) ?? false)
+                {
+                    Console.WriteLine("I'm alive");
+                }
+
+                return warnings;
+
             }
-
-            Console.ReadKey();
+            finally
+            {
+                repository?.Dispose();
+            }
         }
     }
 
-    public class SampleService
+    public class ServiceLocator
     {
-        public bool IsFeatureAvailable(FeatureFlag feature)
+        public static ServiceLocator Current { get; } = new ServiceLocator();
+
+        public static bool IsLocationProviderSet => DateTime.Now.Year == 2020;
+
+        private ServiceLocator()
         {
-            return feature == FeatureFlag.Feature1;
+
+        }
+
+        public object GetInstance(Type instanceType)
+        {
+            if (instanceType == typeof(IRepository))
+                return new Repository();
+            else if (instanceType == typeof(IFeatureConfiguration))
+                return new FeatureConfiguration();
+            return null;
+        }
+
+    }
+
+    public class Repository : IRepository
+    {
+        public void Dispose()
+        {
+            //Do nothing
         }
     }
 
-    public enum FeatureFlag
+    public interface IRepository : IDisposable
     {
-        Feature1,
-        Feature2
+
     }
+
+    public class FeatureConfiguration : IFeatureConfiguration
+    {
+        public bool IsAvailable(string feature)
+        {
+            return feature.Length > 0 && DateTime.Now.Year > 2010;
+        }
+    }
+
+    public interface IFeatureConfiguration
+    {
+        bool IsAvailable(string feature);
+    }
+
+    
+
+    public static class FeaturesEnum
+    {
+        public const string AddInflationRatesToPricingProfile = "Test";
+    }
+
+    public class ActivationException : Exception
+    { }
+
+
+
 }
