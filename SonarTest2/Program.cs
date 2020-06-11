@@ -12,7 +12,7 @@ namespace SonarTest
             Console.ReadKey();
         }
 
-        public static List<string>  Test()
+        public static List<string> Test()
         {
             List<string> warnings = new List<string>();
 
@@ -94,7 +94,7 @@ namespace SonarTest
         bool IsAvailable(string feature);
     }
 
-    
+
 
     public static class FeaturesEnum
     {

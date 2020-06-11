@@ -300,3 +300,5 @@ __pycache__/
 *.ncrunchsolution
 *.Transformed
 *.datasource 
+/.sonarqube/*
+*/.sonarqube/*
